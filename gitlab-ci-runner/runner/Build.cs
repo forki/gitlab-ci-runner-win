@@ -147,13 +147,7 @@ namespace gitlab_ci_runner.runner
     
                 // Add build commands
                 foreach (string sCommand in buildInfo.GetCommands())
-                {
-                    // Skip empty lines
-                    if (String.IsNullOrEmpty(sCommand.Trim()))
-                        continue;
-
                     commands.Add(new Command(sCommand));
-                }
 
                 // Execute
                 foreach (Command sCommand in commands)
@@ -244,8 +238,8 @@ namespace gitlab_ci_runner.runner
             {
                 var sCommand = command.ToString();
 
-                // Remove Whitespaces
-                sCommand = sCommand.Trim();
+                if (String.IsNullOrEmpty(sCommand))
+                    return true;
 
                 // Output command
                 outputList.Enqueue(sCommand);

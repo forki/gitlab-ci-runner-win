@@ -16,13 +16,15 @@ namespace gitlab_ci_runner.helper
 
         public Command(string step)
         {
-            steps.Add(step);
+            if (!String.IsNullOrEmpty(step.Trim()))
+                steps.Add(step.Trim());
         }
-
 
         public Command Add(string step)
         {
-            steps.Add(step);
+            if (!String.IsNullOrEmpty(step.Trim()))
+                steps.Add(step.Trim());
+
             return this;
         }
 
